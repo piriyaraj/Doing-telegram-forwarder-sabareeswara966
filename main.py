@@ -1,6 +1,10 @@
 import tkinter as tk
 from tkinter import ttk
-
+import logging
+import json
+import tkinter as tk
+from tkinter import ttk
+import threading
 # from utils.ForwardHandler import start_message_forwards
 from utils.forward_thread import start_script, stop_script
 
@@ -9,6 +13,15 @@ config_file = "src/credentials/telegram.json"
 # forwarder = MessageForwarder(config_file)
 # forwarder.join_chats()
 
+logging.basicConfig(
+    level=logging.DEBUG,
+    format='%(asctime)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler("app.log"),
+        logging.StreamHandler()
+    ]
+)
+
 channel_mapping = {
         "OptionsTrading_Stocks_Index":["destrinationchannel"],
         "iiiinnnndddeeeexxxkkkkiii":["destrinationchannel"],
@@ -16,10 +29,7 @@ channel_mapping = {
         "accuratrtrading":["destrinationchannel"],
         "https://https://t.me/+U9cmwkJ6tWgyZTI1":["destrinationchannel"]
     }
-import json
-import tkinter as tk
-from tkinter import ttk
-import threading
+
 class GUIHandler:
     def __init__(self, width=600, height=400):
         self.data = {}
@@ -118,6 +128,8 @@ class GUIHandler:
             self.stop_forwarding()
         else:
             print(self.data)
+            logging.info(f"   >> Forwarder started")
+            logging.info(f"      >> {self.data}")
             start_script()
             pass
         # Do something with selected channels
@@ -126,8 +138,10 @@ class GUIHandler:
         self.stop_button.config(state="disabled")   # Disable stop button
         self.start_button.config(state="normal")    # Enable start button
         # Stop forwarding process
-        print("Hello ")
+
         stop_script()
+        logging.info(f"   >> Forwarder Stopped")
+    
     def run(self):
         self.root.mainloop()
 
@@ -137,5 +151,5 @@ if __name__ == "__main__":
     gui = GUIHandler(width=800, height=600)
     for i in names:
         gui.add_channel(i)
-
+    logging.info("========================> New start <======================")
     gui.run()
