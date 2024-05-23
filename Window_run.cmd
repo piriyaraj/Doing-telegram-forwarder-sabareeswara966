@@ -17,16 +17,9 @@ if exist requirements.txt (
 )
 
 REM Configure git
-git config --global --add safe.directory %DIR%
-git add .
-git commit -m "update by bot"
+git restore .
 git pull
-git push
 
 REM Run the Python script
 python main.py
 REM python test.py
-
-git add .
-git commit -m "update by bot"
-git push
