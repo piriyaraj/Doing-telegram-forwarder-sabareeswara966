@@ -1,0 +1,2 @@
+public: username
+private: full invite link
