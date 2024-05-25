@@ -21,13 +21,13 @@ logging.basicConfig(
         logging.StreamHandler()
     ]
 )
-
+destination_link = 'https://t.me/+W2_cajfOYRAwZTQ8'
 channel_mapping = {
-        "OptionsTrading_Stocks_Index":["destrinationchannel"],
-        "iiiinnnndddeeeexxxkkkkiii":["destrinationchannel"],
-        "Buls7":["destrinationchannel"],
-        "accuratrtrading":["destrinationchannel"],
-        "https://https://t.me/+U9cmwkJ6tWgyZTI1":["destrinationchannel"]
+        "OptionsTrading_Stocks_Index":[destination_link],
+        "iiiinnnndddeeeexxxkkkkiii":[destination_link],
+        "Buls7":[destination_link],
+        "accuratrtrading":[destination_link],
+        "https://t.me/+-UrzZc2aDVo2ZDVk":[destination_link]
     }
 
 class GUIHandler:
@@ -61,15 +61,15 @@ class GUIHandler:
             enabled_channels = [channel for channel, var in self.channel_widgets.items() if var["checkbox"].get()]
             for i in enabled_channels:
                 if i == 'OPTIONS TRADING':
-                    data["OptionsTrading_Stocks_Index"]=["https://t.me/+1GiUfQZOPK5jYTI0"]
+                    data["OptionsTrading_Stocks_Index"]=[destination_link]
                 if i == 'STOCK/INDEX':
-                    data["https://t.me/iiiinnnndddeeeexxxkkkkiii"]=["https://t.me/+1GiUfQZOPK5jYTI0"]
+                    data["https://t.me/iiiinnnndddeeeexxxkkkkiii"]=[destination_link]
                 if i == 'STOCK EXPERT':
-                    data["Buls7"]=["https://t.me/+1GiUfQZOPK5jYTI0"]
+                    data["Buls7"]=[destination_link]
                 if i == 'ACCURATE TRADING':
-                    data["accuratrtrading"]=["https://t.me/+1GiUfQZOPK5jYTI0"]
+                    data["accuratrtrading"]=[destination_link]
                 if i == 'MY':
-                    data["https://t.me/+U9cmwkJ6tWgyZTI1"]=["destrinationchannel"]
+                    data["https://t.me/+-UrzZc2aDVo2ZDVk"]=[destination_link]
             self.data = data
             with open('forward_data.json', 'w') as json_file:
                 json.dump(data, json_file, indent=4)
