@@ -22,19 +22,19 @@ logging.basicConfig(
     ]
 )
 destination_link = 'https://t.me/+W2_cajfOYRAwZTQ8'
-channel_mapping = {
-        "OptionsTrading_Stocks_Index":[destination_link],
-        "iiiinnnndddeeeexxxkkkkiii":[destination_link],
-        "Buls7":[destination_link],
-        "accuratrtrading":[destination_link],
-        "https://t.me/+-UrzZc2aDVo2ZDVk":[destination_link]
-    }
+# channel_mapping = {
+#         "OptionsTrading_Stocks_Index":[destination_link],
+#         "ssdssssffffg":[destination_link],
+#         "Buls7":[destination_link],
+#         "accuratrtrading":[destination_link],
+#         "https://t.me/+-UrzZc2aDVo2ZDVk":[destination_link]
+#     }
 
 class GUIHandler:
     def __init__(self, width=600, height=400):
         self.data = {}
         self.root = tk.Tk()
-        self.root.title("Telegram Message Forwarder")
+        self.root.title("Telegram Message Forwarder v1")
         self.width = width
         self.height = height
         self.root.geometry(f"{self.width}x{self.height}")
@@ -63,7 +63,7 @@ class GUIHandler:
                 if i == 'OPTIONS TRADING':
                     data["OptionsTrading_Stocks_Index"]=[destination_link]
                 if i == 'STOCK/INDEX':
-                    data["https://t.me/iiiinnnndddeeeexxxkkkkiii"]=[destination_link]
+                    data["ssdssssffffg"]=[destination_link]
                 if i == 'STOCK EXPERT':
                     data["Buls7"]=[destination_link]
                 if i == 'ACCURATE TRADING':

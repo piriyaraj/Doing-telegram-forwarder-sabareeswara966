@@ -7,7 +7,7 @@ class MessageHandler:
         pattern = r'(\b\w{1,10}\b)\s+(\d{1,5})\s+(CE|PE)\s+above\s+(\d{1,5})'
         match = re.search(pattern, message)
         if match:
-            formatted_message = f"{match.group(1)} {match.group(2)} {match.group(3)} above {match.group(4)}"
+            formatted_message = f"{match.group(1)} {match.group(2)} {match.group(3)} BUY above {match.group(4)}"
             return formatted_message
         return None
 
@@ -30,7 +30,7 @@ class MessageHandler:
         pattern = r'(\w{2,8})\s+(\d{1,5})\s+(CE|PE)\s+AT\s+₹(\d{1,5})'
         match = re.search(pattern, message)
         if match:
-            formatted_message = f"{match.group(1)} {match.group(2)} {match.group(3)} at ₹{match.group(4)}"
+            formatted_message = f"{match.group(1)} {match.group(2)} {match.group(3)} BUY above ₹{match.group(4)}"
             return formatted_message
         return None
     # Done
@@ -40,7 +40,7 @@ class MessageHandler:
         pattern = r'^\s*buy\s+([A-Z0-9 ]+)\s+(CE|PE)\s*[\r\n]*abv\s+([0-9]+(\.[0-9]+)?)🍀\s*$'
         match = re.search(pattern, message, re.IGNORECASE)
         if match:
-            formatted_message = f"{match.group(1).strip()} {match.group(2)} {match.group(3)} ABV {match.group(3)}"
+            formatted_message = f"{match.group(1).strip()} {match.group(2)} {match.group(3)} BUY above {match.group(3)}"
             return formatted_message
         return None
 
