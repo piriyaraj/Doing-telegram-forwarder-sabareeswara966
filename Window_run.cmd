@@ -24,8 +24,8 @@ if exist requirements.txt (
 )
 
 REM Configure git
-@REM git restore .
-@REM git pull
+git restore .
+git pull
 
 REM Run the Python script
 python main.py
