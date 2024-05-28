@@ -7,7 +7,7 @@ class MessageHandler:
         pattern = r'(\b\w{1,10}\b)\s+(\d{1,5})\s+(CE|PE)\s+above\s+(\d{1,5})'
         match = re.search(pattern, message)
         if match:
-            formatted_message = f"{match.group(1)} {match.group(2)} {match.group(3)} BUY above {match.group(4)}"
+            formatted_message = f"{match.group(1)} {match.group(2)} {match.group(3)} BUY ABOVE {match.group(4)}"
             return formatted_message
         return None
 
@@ -19,7 +19,7 @@ class MessageHandler:
         match = re.match(pattern, message)
         if match:
             # Construct the formatted message using the captured groups
-            formatted_message = f"{match.group(1)} {match.group(2)} CE BUY above {match.group(3)}"
+            formatted_message = f"{match.group(1)} {match.group(2)} CE BUY ABOVE {match.group(3)}"
             return formatted_message
         return None
 
@@ -27,10 +27,10 @@ class MessageHandler:
     @staticmethod
     def format_stock_expert(message):
         # Format: XXXX YYYY ZZ  at AA
-        pattern = r'(\w{2,8})\s+(\d{1,5})\s+(CE|PE)\s+AT\s+₹(\d{1,5})'
+        pattern = r'(\b\w{1,10}\b)\s+(\d{1,5})\s+(CE|PE)\s+AT\s+₹(\d{1,5})'
         match = re.search(pattern, message)
         if match:
-            formatted_message = f"{match.group(1)} {match.group(2)} {match.group(3)} BUY above ₹{match.group(4)}"
+            formatted_message = f"{match.group(1)} {match.group(2)} {match.group(3)} BUY ABOVE {match.group(4)}"
             return formatted_message
         return None
     # Done
@@ -40,7 +40,7 @@ class MessageHandler:
         pattern = r'^\s*buy\s+([A-Z0-9 ]+)\s+(CE|PE)\s*[\r\n]*abv\s+([0-9]+(\.[0-9]+)?)🍀\s*$'
         match = re.search(pattern, message, re.IGNORECASE)
         if match:
-            formatted_message = f"{match.group(1).strip()} {match.group(2)} {match.group(3)} BUY above {match.group(3)}"
+            formatted_message = f"{match.group(1).strip()} {match.group(2)} {match.group(3)} BUY ABOVE {match.group(3)}"
             return formatted_message
         return None
 
@@ -62,11 +62,13 @@ class MessageHandler:
 if __name__ == '__main__':
     # Example usage:
     message = """
-📊 BANKNIFTY 49200 CE above 350 
+HEROMOTOCO 5100 PE AT ₹55
 
-#INDEX_OPTIONS
+STOPLOSS AT ₹48
+
+TARGET ₹68_₹77+🚀
     """
-    formatted_message = MessageHandler.format_options_trading(message)
+    formatted_message = MessageHandler().check_message(message=message)
     if formatted_message:
         print("Formatted message:", formatted_message)
     else:
