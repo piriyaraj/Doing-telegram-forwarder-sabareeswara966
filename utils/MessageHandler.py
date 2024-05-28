@@ -1,3 +1,4 @@
+import os
 import re
 
 class MessageHandler:
@@ -59,13 +60,19 @@ class MessageHandler:
             return True, result
         
         return False, message
+    
+def read_text_files_and_process(directory):
+    message_handler = MessageHandler()
+    
+    for root, dirs, files in os.walk(directory):
+        print(root)
+        for file in files:
+
+            if file.endswith('.txt'):
+                file_path = os.path.join(root, file)
+                with open(file_path, 'r', encoding='utf-8') as f:
+                    message = f.read()
+                    formatted_message = message_handler.check_message(message=message)
+                    print("   >>>",formatted_message)
 if __name__ == '__main__':
-    # Example usage:
-    message = """
-GLENMARK 1200 CE BUY ABOVE 68
-    """
-    formatted_message = MessageHandler().check_message(message=message)
-    if formatted_message:
-        print("Formatted message:", formatted_message)
-    else:
-        print("Message does not match the format.")
+    read_text_files_and_process('examples')
