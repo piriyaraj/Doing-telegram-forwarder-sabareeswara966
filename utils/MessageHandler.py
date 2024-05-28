@@ -15,7 +15,7 @@ class MessageHandler:
     @staticmethod
     def format_stock_index(message):
         # Updated pattern with capture groups
-        pattern = r'^([A-Z ]+) ([0-9]+) CE BUY ABOVE ([0-9]+(\.[0-9]+)?)$'
+        pattern = r'^\s*([A-Z ]+) ([0-9]+) CE BUY ABOVE ([0-9]+(\.[0-9]+)?)\s*(?:\nTGT ([0-9,]+))?\s*$'
         match = re.match(pattern, message)
         if match:
             # Construct the formatted message using the captured groups
@@ -62,11 +62,7 @@ class MessageHandler:
 if __name__ == '__main__':
     # Example usage:
     message = """
-HEROMOTOCO 5100 PE AT ₹55
-
-STOPLOSS AT ₹48
-
-TARGET ₹68_₹77+🚀
+GLENMARK 1200 CE BUY ABOVE 68
     """
     formatted_message = MessageHandler().check_message(message=message)
     if formatted_message:
