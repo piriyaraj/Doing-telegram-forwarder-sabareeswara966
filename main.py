@@ -34,7 +34,7 @@ class GUIHandler:
     def __init__(self, width=600, height=400):
         self.data = {}
         self.root = tk.Tk()
-        self.root.title("Telegram Message Forwarder v1.2")
+        self.root.title("Telegram Message Forwarder v1.3")
         self.width = width
         self.height = height
         self.root.geometry(f"{self.width}x{self.height}")
