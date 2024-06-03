@@ -30,11 +30,12 @@ destination_link = 'https://t.me/+W2_cajfOYRAwZTQ8'
 #         "https://t.me/+-UrzZc2aDVo2ZDVk":[destination_link]
 #     }
 
+
 class GUIHandler:
     def __init__(self, width=600, height=400):
         self.data = {}
         self.root = tk.Tk()
-        self.root.title("Telegram Message Forwarder v1.3")
+        self.root.title("Telegram Message Forwarder v1.4")
         self.width = width
         self.height = height
         self.root.geometry(f"{self.width}x{self.height}")
@@ -45,40 +46,45 @@ class GUIHandler:
         self.selected_channels = {}
         self.channel_widgets = {}
 
-        self.start_button = ttk.Button(self.root, text="Start Forwarding", command=self.start_forwarding)
+        self.start_button = ttk.Button(
+            self.root, text="Start Forwarding", command=self.start_forwarding)
         self.start_button.pack(side=tk.LEFT, padx=10, pady=10)
 
-        self.stop_button = ttk.Button(self.root, text="Stop Forwarding", command=self.stop_forwarding)
+        self.stop_button = ttk.Button(
+            self.root, text="Stop Forwarding", command=self.stop_forwarding)
         self.stop_button.pack(side=tk.LEFT, padx=10, pady=10)
-        self.stop_button.config(state="disabled")  # Disable stop button initially
+        # Disable stop button initially
+        self.stop_button.config(state="disabled")
 
     def add_channel(self, channel_name):
         channel_var = tk.BooleanVar(value=False)  # Set default value to False
-        
+
         def callback(var_name, index, mode):
             self.stop_forwarding()
-            data ={}
-            enabled_channels = [channel for channel, var in self.channel_widgets.items() if var["checkbox"].get()]
+            data = {}
+            enabled_channels = [
+                channel for channel, var in self.channel_widgets.items() if var["checkbox"].get()]
             for i in enabled_channels:
                 if i == 'OPTIONS TRADING':
-                    data["OptionsTrading_Stocks_Index"]=[destination_link]
+                    data["OptionsTrading_Stocks_Index"] = [destination_link]
                 if i == 'STOCK/INDEX':
-                    data["ssdssssffffg"]=[destination_link]
+                    data["ssdssssffffg"] = [destination_link]
                 if i == 'STOCK EXPERT':
-                    data["Buls7"]=[destination_link]
+                    data["Buls7"] = [destination_link]
                 if i == 'ACCURATE TRADING':
-                    data["accuratrtrading"]=[destination_link]
+                    data["accuratrtrading"] = [destination_link]
                 if i == 'MY':
-                    data["https://t.me/+-UrzZc2aDVo2ZDVk"]=[destination_link]
+                    data["https://t.me/+-UrzZc2aDVo2ZDVk"] = [destination_link]
             self.data = data
             with open('forward_data.json', 'w') as json_file:
                 json.dump(data, json_file, indent=4)
-                
+
         channel_var.trace_add("write", callback)
         channel_frame = ttk.Frame(self.channel_frame)
         channel_frame.pack(anchor="w", fill="x", padx=5, pady=5)
 
-        channel_label = ttk.Checkbutton(channel_frame, text=channel_name, variable=channel_var)
+        channel_label = ttk.Checkbutton(
+            channel_frame, text=channel_name, variable=channel_var)
         channel_label.pack(side=tk.LEFT, padx=(0, 10))
 
         sl_entry = ttk.Entry(channel_frame)
@@ -109,7 +115,8 @@ class GUIHandler:
             del self.channel_widgets[channel_name]
 
     def get_selected_channels(self):
-        selected_channels = [channel for channel, var in self.channel_widgets.items() if var["checkbox"].get()]
+        selected_channels = [
+            channel for channel, var in self.channel_widgets.items() if var["checkbox"].get()]
         return selected_channels
 
     def get_sl_bp_tp1(self, channel_name):
@@ -123,7 +130,8 @@ class GUIHandler:
     def start_forwarding(self):
         self.start_button.config(state="disabled")  # Disable start button
         self.stop_button.config(state="normal")     # Enable stop button
-        enabled_channels = [channel for channel, var in self.channel_widgets.items() if var["checkbox"].get()]
+        enabled_channels = [
+            channel for channel, var in self.channel_widgets.items() if var["checkbox"].get()]
         if enabled_channels == []:
             self.stop_forwarding()
         else:
@@ -141,13 +149,15 @@ class GUIHandler:
 
         stop_script()
         logging.info(f"   >> Forwarder Stopped")
-    
+
     def run(self):
         self.root.mainloop()
 
+
 if __name__ == "__main__":
-    names = ['OPTIONS TRADING ', 'STOCK/INDEX', 'STOCK EXPERT', 'ACCURATE TRADING','MY']
-    
+    names = ['OPTIONS TRADING ', 'STOCK/INDEX',
+             'STOCK EXPERT', 'ACCURATE TRADING', 'MY']
+
     gui = GUIHandler(width=800, height=600)
     for i in names:
         gui.add_channel(i)

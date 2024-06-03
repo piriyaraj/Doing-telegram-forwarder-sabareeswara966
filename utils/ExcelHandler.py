@@ -19,10 +19,10 @@ class ExcelHandler:
         if os.path.exists(filepath):
             df = pd.read_excel(filepath)
         else:
-            df = pd.DataFrame(columns=['Time', 'Message', 'Source Channel'])
+            df = pd.DataFrame(columns=['Time', 'Source name', 'Stroke price', 'Order type','Value', 'From'])
 
         current_time = datetime.now().strftime('%H:%M:%S')
-        new_data = {'Time': current_time, 'Message': data[0], 'Source Channel': data[1]}
+        new_data = {'Time': current_time, 'Source name': data[2], 'Stroke price': data[3], 'Order type': data[4], 'Value': data[5], 'From': data[1]}
         df = df._append(new_data, ignore_index=True)
 
         df.to_excel(filepath, index=False)

@@ -93,7 +93,7 @@ def run_script_1():
                         final_caption = message.caption
                         for dest in dests:
                             try:
-                                status, formatted_message = message_handler.check_message(final_caption)
+                                status, formatted_message,data = message_handler.check_message(final_caption)
                                 if status:
                                     is_required_message = True
                                     print(f"{Fore.YELLOW}{formatted_message}")
@@ -106,7 +106,7 @@ def run_script_1():
                         final_caption = message.text
                         for dest in dests:
                             try:
-                                status, formatted_message = message_handler.check_message(final_caption)
+                                status, formatted_message, data = message_handler.check_message(final_caption)
                                 if status:
                                     is_required_message = True
                                     print(f"{Fore.YELLOW}{formatted_message}")
@@ -117,7 +117,7 @@ def run_script_1():
                     else:
                         for dest in dests:
                             try:
-                                status, formatted_message = message_handler.check_message(final_caption)
+                                status, formatted_message, data = message_handler.check_message(final_caption)
                                 if status:
                                     is_required_message = True
                                     print(f"{Fore.YELLOW}{formatted_message}")
@@ -126,7 +126,7 @@ def run_script_1():
                             except Exception as e:
                                 print(f"{Fore.RED}Error copying message to {dest.id}: {e}")
                     if is_required_message:
-                        handler.save_to_excel([final_caption, channel])
+                        handler.save_to_excel([final_caption, channel]+data)
             except Exception as e:
                 print(f"{Fore.RED}Error in message handling: {e}")
     app.run()
